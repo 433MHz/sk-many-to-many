@@ -1,30 +1,24 @@
 package com.darek1024.manytomany;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "groups")
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private LocalDateTime createdAt;
 
     @ManyToMany(mappedBy = "groups")
-    private Set<User> users = new HashSet<>();
+    private Set<Student> students = new HashSet<>();
 
-    public Group(Long id, String name, LocalDateTime createdAt) {
+    public Group(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.createdAt = createdAt;
     }
 
     public Group() {
@@ -46,19 +40,11 @@ public class Group {
         this.name = name;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return this.createdAt;
+    public Set<Student> getStudents() {
+        return this.students;
     }
 
-    public void setCreatedAt(final LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Set<User> getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(final Set<User> users) {
-        this.users = users;
+    public void setStudents(final Set<Student> students) {
+        this.students = students;
     }
 }
